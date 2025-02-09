@@ -14,7 +14,10 @@ axiosInstance.interceptors.response.use(
 export default {
   getTasks: async () => {
     const result = await axios.get(`/items`);    
-    return result.data;
+    if(Array.isArray(result.data))
+      return result.data;
+    else{
+    return [];}
   },
 
   postTask: async (name) => {
