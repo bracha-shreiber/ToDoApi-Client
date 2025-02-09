@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
+const axiosInstance = axios.defaults.baseURL=process.env.REACT_APP_API_URL
 
 axiosInstance.interceptors.response.use(
   response => {
@@ -16,8 +14,8 @@ axiosInstance.interceptors.response.use(
 
 export default {
   getTasks: async () => {
-    const result = await axiosInstance.get(`/items`); // השתמש ב-axiosInstance
-    if (Array.isArray(result)) // תשנה ל-`result` במקום `result.data`
+    const result = await axiosInstance.get(`/items`); 
+    if (Array.isArray(result)) 
       return result;
     else {
       return [];
