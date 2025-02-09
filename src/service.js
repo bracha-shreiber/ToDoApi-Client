@@ -1,14 +1,14 @@
 import axios from 'axios';
 axios.baseURL(process.env.REACT_APP_API_URL)
-axiosInstance.interceptors.response.use(
-  response => {
-    return response.data;
-  },
-  error => {
-    console.error('Error occurred:', error.response ? error.response.data : error.message);
-    return Promise.reject(error);
-  }
-);
+// axiosInstance.interceptors.response.use(
+//   response => {
+//     return response.data;
+//   },
+//   error => {
+//     console.error('Error occurred:', error.response ? error.response.data : error.message);
+//     return Promise.reject(error);
+//   }
+// );
 export default {
   getTasks: async () => {
     const result = await axios.get(`/items`);    
