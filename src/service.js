@@ -15,7 +15,7 @@ axiosInstance.interceptors.response.use(
 );
 export default {
   getTasks: async () => {
-    const result = await axios.get(`/items`); 
+    const result = await axiosInstance.get(`/items`); 
     if (Array.isArray(result)) 
       return result;
     else {
@@ -26,7 +26,7 @@ export default {
   postTask: async (name) => {
     console.log('addTask', name);
     try {
-      const result = await axios.post(`/items`, { name });
+      const result = await axiosInstance.post(`/items`, { name });
       return result; // אין צורך ב-`result.data` כי ה-interceptor מחזיר את הנתונים
     } catch (error) {
       console.error('Error adding task:', error);
@@ -37,7 +37,7 @@ export default {
   putCompleted: async (id, isComplete) => {
     console.log('setCompleted', { id, isComplete });
     try {
-      const result = await axios.put(`/items/${id}`, { isComplete });
+      const result = await axiosInstance.put(`/items/${id}`, { isComplete });
       return result; // אין צורך ב-`result.data`
     } catch (error) {
       console.error('Error updating task completion:', error);
@@ -48,7 +48,7 @@ export default {
   deleteTask: async (id) => {
     console.log('deleteTask', id);
     try {
-      await axios.delete(`/items/${id}`);
+      await axiosInstance.delete(`/items/${id}`);
       return { success: true };
     } catch (error) {
       console.error('Error deleting task:', error);
